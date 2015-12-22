@@ -65,6 +65,10 @@ public class OptimaizeLanguageDetector extends IPlugin<Message, Message, VoidCon
         return PLUGIN_NAME;
     }
 
+    @Override public IPlugin<Message, Message, VoidConfig> getInstance() {
+        return new OptimaizeLanguageDetector();
+    }
+
     @Override public VoidConfig getNewParameter() {
         return new VoidConfig();
     }
