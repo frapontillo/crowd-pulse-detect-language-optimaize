@@ -17,6 +17,7 @@
 plugins {
     id 'java'
     id 'maven'
+    id "com.github.frapontillo.switchdependencies" version "0.0.1-alpha.0"
 }
 
 sourceCompatibility = 1.8
@@ -32,8 +33,16 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.frapontillo:pulse:0.0.1'
-    compile 'com.github.frapontillo:crowd-pulse-data-java:0.0.1'
-    compile 'com.github.frapontillo:crowd-pulse-detect-language:0.0.1'
-    compile group: 'com.optimaize.languagedetector', name: 'language-detector', version: '0.4'
+    compile 'com.optimaize.languagedetector:language-detector:0.4'
+}
+
+switchDependencies {
+    develop {
+        truthy = {
+            compile project(':crowd-pulse-detect-language')
+        }
+        falsy = {
+            compile 'com.github.frapontillo:crowd-pulse-detect-language:0.0.1'
+        }
+    }
 }
